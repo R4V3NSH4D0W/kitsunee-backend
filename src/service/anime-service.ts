@@ -25,12 +25,12 @@ const getGenreList = async()=>{
     return gogoanime.fetchGenreList();
 }
 
-const getGenreInfo = async(genre:string)=>{
-    return gogoanime.fetchGenreInfo(genre);
+const getGenreInfo = async(genre:string, page?:number)=>{
+    return gogoanime.fetchGenreInfo(genre,page);
 }
 
-const getRecentMovie =async()=>{
-    return gogoanime.fetchRecentMovies();
+const getRecentMovie =async(page?:number)=>{
+    return gogoanime.fetchRecentMovies(page);
 }
 
 const getEpisodeSource =async(episodeId:string)=>{
