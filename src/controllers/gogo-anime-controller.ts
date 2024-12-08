@@ -53,6 +53,7 @@ export const gogoRecentMovies = async(req:Request, res:Response)=>{
     }
 }
 
+//http://localhost:3000/api/gogoanime/episodesource?id=dandadan-episode-1
 export const gogoEpisodeSource =async(req:Request, res:Response)=>{
     const episodeId= req.query.id as string;
     if(!episodeId){
@@ -89,6 +90,7 @@ export const gogoGenreList =async(req:Request, res:Response)=>{
     }
 }
 
+//http://localhost:3000/api/gogoanime/animeinfo?id=dandadan
 export const gogoAnimeInfo = async(req:Request, res:Response)=>{
     const id = req.query.id as string;
     if(!id){
