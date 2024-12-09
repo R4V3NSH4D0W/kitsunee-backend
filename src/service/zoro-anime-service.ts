@@ -35,10 +35,15 @@ export const getZoroSearch = async (query:string) => {
     return await zoroanime.search(query)
 }
 
+//http://localhost:3000/api/zoroanime/schedule?date=2023-12-09
 export const getZoroSchedule = async (date?:string) => {
     return await zoroanime.fetchSchedule(date);
 }
 
 export const getZoroTopAiring = async (page?:number) => { 
     return await zoroanime.fetchTopAiring(page);
+}
+//http://localhost:3000/api/zoroanime/spotlight
+export const getZoroSpotlight = async () => {
+    return await zoroanime.fetchSpotlight();
 }
