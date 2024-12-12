@@ -1,19 +1,24 @@
 import { Request, Response } from "express";
-import { getZoroAnimeInfo, getZoroEpisodeSource, getZoroMostPopular, getZoroRecentlyAdded, getZoroRecentlyUpdated, getZoroSchedule, getZoroSearch, getZoroSpotlight, getZoroTopAiring } from "../service/zoro-anime-service";
+import { getZoroAnimeInfo, getZoroEpisodeSource, getZoroGenres, getZoroMostPopular, getZoroRecentlyAdded, getZoroRecentlyUpdated, getZoroSchedule, getZoroSearch, getZoroSearchByGenre, getZoroSpotlight, getZoroTopAiring } from "../service/zoro-anime-service";
+import { fetchFilteredData } from "../service/search-filter-service";
 
 
-export const ZoroSearchAnime=async(req:Request, res:Response):Promise<void>=>{
+export const ZoroSearchAnime = async (req: Request, res: Response): Promise<void> => {
     const query = req.query.q as string;
-   if(!query){
-    res.status(400).json({error:"Please provide search query"})
-   }
-   try{
-    const searchResult= await getZoroSearch(query);
-    res.status(200).json(searchResult);
-   }catch(error){
-    res.status(500).json({error:"Internal Server Error"});
-   }
-}
+  
+    if (!query) {
+      res.status(400).json({ error: "Please provide a search query" });
+      return; 
+    }
+  
+    try {
+      const searchResult = await getZoroSearch(query);
+      res.status(200).json(searchResult);
+    } catch (error) {
+      console.error("Error in ZoroSearchAnime:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  };
 
 export const ZoroTopAiring = async (req: Request, res: Response) => {
     try {
@@ -110,3 +115,65 @@ export const ZoroSchedule = async(req:Request, res:Response)=>{
         res.status(500).json({error:'Internal Server Error'});
     }
 }
+
+export const ZoroGenre = async(_req:Request, res:Response)=>{
+    try{
+        const results= await getZoroGenres();
+        res.status(200).json(results);
+    }catch(error){
+        res.status(500).json({error:'Internal Server Error'});
+    }
+}
+
+export const ZoroSearchByGenre = async(req:Request, res:Response)=>{
+    const genre = req.query.genre as string;
+    try{
+        const page = req.query.page && !isNaN(Number(req.query.page)) 
+        ? Number(req.query.page) 
+        : 1;
+        const results= await getZoroSearchByGenre(genre,page);
+        res.status(200).json(results);
+    }catch(error){
+        res.status(500).json({error:'Internal Server Error'});
+    }
+}
+export const ZoroFilterSearch = async (req: Request, res: Response): Promise<void> => {
+    const { genres = [], sort = 'popularity', status = 'all', type = 'tv' } = req.body;
+  
+    try {
+      if (!Array.isArray(genres) || !genres.every(g => typeof g === 'string')) {
+         res.status(400).json({
+          success: false,
+          message: 'Genres must be an array of strings',
+        });
+      }
+  
+      if (typeof sort !== 'string' || typeof status !== 'string' || typeof type !== 'string') {
+         res.status(400).json({
+          success: false,
+          message: 'Sort, status, and type must be strings',
+        });
+      }
+
+      const filteredResults = await fetchFilteredData({
+        genres,
+        sortBy: sort.toLowerCase(),
+        filterStatus: status.toLowerCase(),
+        filterType: type.toLowerCase(),
+      });
+  
+      res.status(200).json({
+        success: true,
+        filters: { genres, sort, status, type },
+        results: filteredResults,
+      });
+    } catch (error) {
+      console.error('Filter Search Error:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
+
+
+// Simulated database filter logic
+

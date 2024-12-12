@@ -31,6 +31,7 @@ export const getZoroRecentlyUpdated = async (page?:number) => {
     return await zoroanime.fetchRecentlyUpdated(page);
 }
 
+//http://localhost:3000/api/zoroanime/search?q=sword
 export const getZoroSearch = async (query:string) => {
     return await zoroanime.search(query)
 }
@@ -43,7 +44,22 @@ export const getZoroSchedule = async (date?:string) => {
 export const getZoroTopAiring = async (page?:number) => { 
     return await zoroanime.fetchTopAiring(page);
 }
+
 //http://localhost:3000/api/zoroanime/spotlight
 export const getZoroSpotlight = async () => {
     return await zoroanime.fetchSpotlight();
 }
+
+export const getZoroSearchSuggestions=async(query:string)=>{
+    return await zoroanime.fetchSearchSuggestions(query);
+}
+
+export const getZoroGenres = async () => {
+    return await zoroanime.fetchGenres();
+}
+
+//http://localhost:3000/api/zoroanime/searchbygenre?genre=action
+export const getZoroSearchByGenre = async (genre:string,page?:number) => {
+    return await zoroanime.genreSearch(genre,page);
+}
+
