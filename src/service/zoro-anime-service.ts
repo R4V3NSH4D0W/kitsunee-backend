@@ -63,3 +63,20 @@ export const getZoroSearchByGenre = async (genre:string,page?:number) => {
     return await zoroanime.genreSearch(genre,page);
 }
 
+export const getZoroMostFavorite = async (page?:number) => {
+    return await zoroanime.fetchMostFavorite(page);
+}
+
+export const getZoroMovie = async (page?:number) => {
+    return await zoroanime.fetchMovie(page);
+}
+
+export const getTopUpComing = async (page?:number) => {
+    return await zoroanime.fetchTopUpcoming(page);
+}
+
+export const isZoroWorking = async () => {
+    return await zoroanime.isWorking;
+}
+
+
