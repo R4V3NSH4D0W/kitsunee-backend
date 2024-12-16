@@ -1,5 +1,5 @@
 import express from 'express';
-import { checkZoroWorking, ZoroAnimeInfo, ZoroEpisodeSource, ZoroFilterSearch, ZoroGenre, ZoroMostFavorite, ZoroMovie, ZoroPopularAnime, ZoroRecentlyAdded, ZoroRecentlyUpdated, ZoroSchedule, ZoroSearchAnime, ZoroSearchByGenre, ZoroSpotLight, ZoroTopAiring } from '../controllers/zoro-anime-controller';
+import { checkZoroWorking, MappedAnimeDetails, ZoroAnimeInfo, ZoroEpisodeSource, ZoroFilterSearch, ZoroGenre, ZoroMostFavorite, ZoroMovie, ZoroPopularAnime, ZoroRecentlyAdded, ZoroRecentlyUpdated, ZoroSchedule, ZoroSearchAnime, ZoroSearchByGenre, ZoroSpotLight, ZoroTopAiring } from '../controllers/zoro-anime-controller';
 
 const router=express.Router();
 
@@ -18,4 +18,5 @@ router.get('/searchbygenre',ZoroSearchByGenre);
 router.post('/filtersearch', ZoroFilterSearch);
 router.get('/iszoroworking',checkZoroWorking);
 router.get('/movie',ZoroMovie);
+router.get('/mappedanimeinfo',MappedAnimeDetails)
 export default router;

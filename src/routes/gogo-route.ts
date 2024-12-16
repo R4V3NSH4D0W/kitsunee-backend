@@ -1,5 +1,5 @@
 import express from 'express';
-import { gogoAnimeInfo, gogoEpisodeSource, gogoGenreList, gogoGetEpisodeServer, GogoPopularAnime, gogoRecentMovies, GogoSearchAnime, GogoTopAiring } from '../controllers/gogo-anime-controller';
+import { gogoAnimeInfo, gogoEpisodeSource, gogoGenreList, gogoGetEpisodeServer, GogoPopularAnime, gogoRecentMovies, GogoSearchAnime, GogoTopAiring, GogoWorking } from '../controllers/gogo-anime-controller';
 
 const router=express.Router();
 
@@ -11,4 +11,5 @@ router.get('/genrelist',gogoGenreList)
 router.get('/episodesource',gogoEpisodeSource)
 router.get('/episodeserver',gogoGetEpisodeServer)
 router.get('/animeinfo',gogoAnimeInfo)
+router.get('/isworking',GogoWorking)
 export default router;

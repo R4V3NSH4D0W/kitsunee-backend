@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getZoroAnimeInfo, getZoroEpisodeSource, getZoroGenres, getZoroMostFavorite, getZoroMostPopular, getZoroMovie, getZoroRecentlyAdded, getZoroRecentlyUpdated, getZoroSchedule, getZoroSearch, getZoroSearchByGenre, getZoroSpotlight, getZoroTopAiring, isZoroWorking } from "../service/zoro-anime-service";
 import { fetchFilteredData } from "../service/search-filter-service";
+import { mapAnimeDetail } from "../service/anime-info-mapper";
 
 
 export const ZoroSearchAnime = async (req: Request, res: Response): Promise<void> => {
@@ -208,6 +209,19 @@ export const ZoroMovie = async(req:Request, res:Response)=>{
         res.status(200).json(result);
     }catch(error){
         res.status(500).json({error:'Internal Server Error'});
+    }
+}
+
+export const MappedAnimeDetails = async(req:Request, res:Response)=>{
+    const animeId = req.query.id as string;
+    if(!animeId){
+        res.status(400).json({error:"Please provide anime id"});
+    }
+    try{
+        const animeDetails= await mapAnimeDetail(animeId);
+        res.status(200).json(animeDetails);
+    }catch(error){
+        res.status(500).json({error:"Internal Server Error"});
     }
 }
   

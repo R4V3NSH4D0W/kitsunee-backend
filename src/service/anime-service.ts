@@ -40,11 +40,16 @@ const getEpisodeServer = async(episodeId:string)=>{
     return gogoanime.fetchEpisodeServers(episodeId);
 }
 
+const isGogoWorking = async()=>{
+    return gogoanime.isWorking;
+}
+
 export {
     getAnimeInfo,
     getGenreInfo,
     getGenreList,
     getTopAiring,
+    isGogoWorking,
     getSearchAnime,
     getRecentMovie,
     getPopularAnime,

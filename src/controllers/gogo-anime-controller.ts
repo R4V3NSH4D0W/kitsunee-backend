@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAnimeInfo, getEpisodeServer, getEpisodeSource, getGenreList, getPopularAnime, getRecentMovie, getSearchAnime, getTopAiring } from "../service/anime-service";
+import { getAnimeInfo, getEpisodeServer, getEpisodeSource, getGenreList, getPopularAnime, getRecentMovie, getSearchAnime, getTopAiring, isGogoWorking } from "../service/anime-service";
 
 export const GogoSearchAnime=async(req:Request, res:Response):Promise<void>=>{
     const query = req.query.q as string;
@@ -102,4 +102,9 @@ export const gogoAnimeInfo = async(req:Request, res:Response)=>{
     }catch(error){
         res.status(500).json({error:'Internal Server Error'});
     }
+}
+
+export const GogoWorking = async(_req:Request, res:Response)=>{
+    const result = await isGogoWorking();
+    res.status(200).json(result)
 }

@@ -1,11 +1,13 @@
 import express from "express";
 import gogoRoute from './routes/gogo-route';
 import zoroRoute from './routes/zoro-route';
+import _9animeRoute from './routes/9anime-route';
 const app = express();
 
 app.use(express.json());
 
 app.use('/api/gogoanime',gogoRoute)
 app.use('/api/zoroanime',zoroRoute)
+app.use('/api/9anime',_9animeRoute)
 
 export default app;
