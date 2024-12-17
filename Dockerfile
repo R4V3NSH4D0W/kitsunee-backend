@@ -1,36 +1,37 @@
-# Stage 1: Build Stage
-FROM node:22-alpine as build
+# Stage 1: Build the TypeScript application
+FROM node:22-alpine AS build
 
-# Set working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+# Copy package.json and package-lock.json (or yarn.lock)
+COPY package*.json yarn.lock ./
 
 # Install dependencies
-RUN npm install --production=false
+RUN yarn install --frozen-lockfile
 
 # Copy the rest of the application code
 COPY . .
 
-# Build the application (uncomment if needed, e.g., for TypeScript)
-RUN npm run build
+# Build the TypeScript application
+RUN yarn build
 
-# Stage 2: Production Stage
-FROM node:22-alpine as production
+# Stage 2: Create the production image
+FROM node:22-alpine
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy only necessary files from the build stage
+# Copy only the necessary files from the build stage
+COPY --from=build /app/dist ./dist
 COPY --from=build /app/package*.json ./
-COPY --from=build /app/dist ./dist # Adjust if your app's build output is elsewhere
+COPY --from=build /app/yarn.lock ./
 
-# Install production dependencies
-RUN npm install --production
+# Install only production dependencies
+RUN yarn install --frozen-lockfile --production
 
-# Expose the application's port
+# Expose the port the app listens on (replace with your app's port)
 EXPOSE 3000
 
-# Set the command to run the app
-CMD ["node", "dist/index.js"] # Adjust the entry point as needed
+# Command to start the application
+CMD ["node", "dist/index.js"]
