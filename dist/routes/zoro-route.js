@@ -1,0 +1,25 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const zoro_anime_controller_1 = require("../controllers/zoro-anime-controller");
+const router = express_1.default.Router();
+router.get("/search", zoro_anime_controller_1.ZoroSearchAnime);
+router.get('/popularanime', zoro_anime_controller_1.ZoroPopularAnime);
+router.get('/topairing', zoro_anime_controller_1.ZoroTopAiring);
+router.get('/spotlight', zoro_anime_controller_1.ZoroSpotLight);
+router.get('/mostfavorite', zoro_anime_controller_1.ZoroMostFavorite);
+router.get('/recentlyupdated', zoro_anime_controller_1.ZoroRecentlyUpdated);
+router.get('/episodesource', zoro_anime_controller_1.ZoroEpisodeSource);
+router.get('/recentlyadded', zoro_anime_controller_1.ZoroRecentlyAdded);
+router.get('/animeinfo', zoro_anime_controller_1.ZoroAnimeInfo);
+router.get('/schedule', zoro_anime_controller_1.ZoroSchedule);
+router.get('/genres', zoro_anime_controller_1.ZoroGenre);
+router.get('/searchbygenre', zoro_anime_controller_1.ZoroSearchByGenre);
+router.post('/filtersearch', zoro_anime_controller_1.ZoroFilterSearch);
+router.get('/iszoroworking', zoro_anime_controller_1.checkZoroWorking);
+router.get('/movie', zoro_anime_controller_1.ZoroMovie);
+router.get('/mappedanimeinfo', zoro_anime_controller_1.MappedAnimeDetails);
+exports.default = router;
