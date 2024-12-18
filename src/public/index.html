@@ -3,20 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reusable API Documentation</title>
+    <title>Kitsunee API Documentation</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css"
     />
+    <link rel="icon" href="assets/icon-512x512.png" type="image/png" />
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
-      <h1>API Documentation</h1>
+      <h1><i class="fas fa-code"></i>API Documentation</h1>
       <p>
         Explore and test the available APIs for GogoAnime and ZoroAnime
         services.
@@ -53,34 +55,58 @@
         data-title="ZoroAnime Routes"
         id="zoroanime-routes"
       ></div>
+
+      <div class="test-form" id="testForm">
+        <h3>Test API</h3>
+        <div class="form-group">
+          <label for="method">HTTP Method</label>
+          <select id="method">
+            <option value="GET">GET</option>
+            <option value="POST">POST</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="url">API Endpoint</label>
+          <input type="text" id="url" placeholder="Enter API URL" />
+        </div>
+        <div class="form-group">
+          <label for="body">Request Body (JSON)</label>
+          <textarea
+            id="body"
+            placeholder="Enter JSON body (only for POST)"
+          ></textarea>
+        </div>
+        <button class="send-button" onclick="sendRequest()">
+          Send Request
+        </button>
+      </div>
+
+      <div class="result" id="result">
+        <h3>Response</h3>
+        <pre id="response" class="language-json"></pre>
+      </div>
     </div>
+
     <footer>
-      <p>© 2024 Kitsunee Anime API Service</p>
+      <div class="footer-container">
+        <p>&copy; 2024 Kitsunee Anime API Service</p>
+        <div class="disclaimer-section">
+          <h4>Disclaimer</h4>
+          <p>
+            The information provided by this API is for
+            <strong
+              >educational, informational, or non-commercial purposes
+              only</strong
+            >. We are not liable for any misuse, errors, or damages arising from
+            the use of this service. Unauthorized copying, redistribution,
+            reproduction, or commercial use is strictly prohibited.
+          </p>
+        </div>
+      </div>
     </footer>
 
-    <div class="test-form" id="testForm">
-      <h3>Test API</h3>
-      <label for="method">Method:</label>
-      <select id="method">
-        <option value="GET">GET</option>
-        <option value="POST">POST</option>
-      </select>
-      <label for="url">URL:</label>
-      <input type="text" id="url" placeholder="Enter API URL" />
-      <label for="body">Request Body (JSON):</label>
-      <textarea
-        id="body"
-        placeholder="Enter JSON body for POST requests"
-      ></textarea>
-      <button onclick="sendRequest()">Send</button>
-    </div>
-
-    <div class="result" id="result">
-      <h3>Response</h3>
-      <pre id="response" class="language-json"></pre>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

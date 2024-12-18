@@ -12,8 +12,39 @@ const routes = {
     },
     {
       method: "GET",
-      url: "/api/gogoanime/details?id=anime-id",
-      description: "Fetch details of a specific anime.",
+      url: "/api/gogoanime/animenfo?id=anime-id",
+      description: "Fetch anime information of a specific anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/episodesource?id=episode-id",
+      description: "Fetch episode source.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/episode?id=episode-id",
+      description: "Fetch a specific episode.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/popularanime",
+      description: "Fetch popular anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/genrelist",
+      description: "Fetch list of genres.",
+    },
+
+    {
+      method: "GET",
+      url: "/api/gogoanime/movies",
+      description: "Fetch movies.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/isworking",
+      description: "Check if GogoAnime is working.",
     },
   ],
   zoroanime: [
@@ -42,35 +73,90 @@ const routes = {
       url: "/api/zoroanime/spotlight",
       description: "Get Anime SpotLight.",
     },
+    {
+      method: "GET",
+      url: "/api/zoroanime/mostfavorite",
+      description: "Get Most Favorite Anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/recentlyupdated",
+      description: "Get Recently Updated Anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/episodesource?episode=episode_id",
+      description: "Get Episode Source.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/recentlyadded",
+      description: "Get Recently Added Anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/animeinfo?id=anime_id",
+      description: "Get Anime Info.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/genres",
+      description: "Get Anime Genres.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/searchbygenre?genre=genre_name",
+      description: "Search Anime By Genre.",
+    },
+
+    {
+      method: "GET",
+      url: "/api/zoroanime/iszoroworking",
+      description: "Check if ZoroAnime is working.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/movie",
+      description: "Get Movies.",
+    },
   ],
 };
 
+// Render Routes in UI
 function renderRoutes(sectionId, title, apiRoutes) {
   const section = document.getElementById(sectionId);
   section.innerHTML = `<h2>${title}</h2>`;
   const ul = document.createElement("ul");
+
   apiRoutes.forEach(({ method, url, description }) => {
     const li = document.createElement("li");
     li.innerHTML = `
-        <div>
-          <code>${method} ${url}</code>
-          <p>${description}</p>
-        </div>
-        <button onclick="testApi('${method}', '${url}')">Test</button>
-      `;
+      <div>
+        <code>${method} ${url}</code>
+        <p>${description}</p>
+      </div>
+      <button onclick="testApi('${method}', '${url}')">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    `;
     ul.appendChild(li);
   });
+
   section.appendChild(ul);
 }
 
+// Test API Form
 function testApi(method, url) {
   document.getElementById("testForm").style.display = "block";
   document.getElementById("method").value = method;
   document.getElementById("url").value = url;
   document.getElementById("body").style.display =
     method === "POST" ? "block" : "none";
+
+  document.getElementById("testForm").scrollIntoView({ behavior: "smooth" });
 }
 
+// Handle Send Request
 async function sendRequest() {
   const method = document.getElementById("method").value;
   const url = document.getElementById("url").value;
@@ -82,66 +168,44 @@ async function sendRequest() {
       options.headers = { "Content-Type": "application/json" };
       options.body = body;
     }
+
     const response = await fetch(url, options);
     const result = await response.json();
 
     document.getElementById("result").style.display = "block";
-    document.getElementById("response").textContent = JSON.stringify(
-      result,
-      null,
-      2
-    );
-    Prism.highlightAll();
+
+    const responseElement = document.getElementById("response");
+    responseElement.textContent = JSON.stringify(result, null, 2);
+
+    // Apply syntax highlighting
+    hljs.highlightElement(responseElement);
   } catch (error) {
     document.getElementById("result").style.display = "block";
-    document.getElementById("response").textContent = `Error: ${error.message}`;
+
+    const responseElement = document.getElementById("response");
+    responseElement.textContent = `Error: ${error.message}`;
+
+    // Apply syntax highlighting for error messages as well
+    hljs.highlightElement(responseElement);
   }
 }
 
+// DOMContentLoaded to Render Routes
 document.addEventListener("DOMContentLoaded", () => {
   renderRoutes("gogoanime-routes", "GogoAnime Routes", routes.gogoanime);
   renderRoutes("zoroanime-routes", "ZoroAnime Routes", routes.zoroanime);
 });
 
-function checkApiStatus(apiUrl, statusElementId, successText, failureText) {
-  fetch(apiUrl)
-    .then((response) => response.json())
-    .then((data) => {
-      const statusElement = document.getElementById(statusElementId);
+// Highlight response JSON safely
+function displayResponse(data) {
+  const responseElement = document.getElementById("response");
 
-      if (typeof data === "boolean") {
-        if (data) {
-          statusElement.innerHTML = `<div class="status working">${successText}</div>`;
-        } else {
-          statusElement.innerHTML = `<div class="status not-working">${failureText}</div>`;
-        }
-      } else if (data.isWorking !== undefined) {
-        if (data.isWorking) {
-          statusElement.innerHTML = `<div class="status working">${successText}</div>`;
-        } else {
-          statusElement.innerHTML = `<div class="status not-working">${failureText}</div>`;
-        }
-      }
-    })
-    .catch(() => {
-      const statusElement = document.getElementById(statusElementId);
-      statusElement.innerHTML = `<div class="status not-working">${failureText}</div>`;
-    });
+  try {
+    const prettyJson = JSON.stringify(data, null, 2);
+
+    responseElement.textContent = prettyJson;
+    hljs.highlightElement(responseElement);
+  } catch (error) {
+    responseElement.textContent = "Error parsing response!";
+  }
 }
-
-// Call on page load for ZoroAnime & GogoAnime
-document.addEventListener("DOMContentLoaded", () => {
-  checkApiStatus(
-    "/api/zoroanime/iszoroworking",
-    "zoro-status",
-    "✅ ZoroAnime Working",
-    "❌ ZoroAnime Not Working"
-  );
-
-  checkApiStatus(
-    "/api/gogoanime/isworking",
-    "gogo-status",
-    "✅ GogoAnime Working",
-    "❌ GogoAnime Not Working"
-  );
-});

@@ -126,13 +126,18 @@ export const ZoroGenre = async(_req:Request, res:Response)=>{
     }
 }
 
-export const ZoroSearchByGenre = async(req:Request, res:Response)=>{
+export const ZoroSearchByGenre = async(req:Request, res:Response): Promise<void>=>{
     const genre = req.query.genre as string;
+    console.log(genre);
+    if (!genre) {
+         res.status(400).json({ error: 'Genre query is required' });
+      }
     try{
         const page = req.query.page && !isNaN(Number(req.query.page)) 
         ? Number(req.query.page) 
         : 1;
         const results= await getZoroSearchByGenre(genre,page);
+     
         res.status(200).json(results);
     }catch(error){
         res.status(500).json({error:'Internal Server Error'});

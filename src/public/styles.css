@@ -1,107 +1,130 @@
 body {
-    font-family: "Arial", sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
-    color: #333;
-  }
-  header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  header h1 {
-    font-size: 2.5em;
-    color: #007acc;
-  }
-  header p {
-    font-size: 1.2em;
-    color: #666;
-  }
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .api-section {
-    margin-bottom: 30px;
-  }
-  .api-section h2 {
-    font-size: 1.8em;
-    color: #444;
-    margin-bottom: 10px;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  li code {
-    background: #eef6ff;
-    padding: 2px 5px;
-    border-radius: 5px;
-    color: #007acc;
-  }
-  li button {
-    background: #007acc;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 0.9em;
-  }
-  li button:hover {
-    background: #005fa3;
-  }
-  footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 0.9em;
-    color: #777;
-  }
-  .test-form {
-    display: none;
-    margin-top: 10px;
-  }
-  .test-form input,
-  .test-form textarea,
-  .test-form select {
-    padding: 5px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: calc(100% - 12px);
-  }
-  .test-form button {
-    background: #007acc;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  .result {
-    margin-top: 20px;
-    padding: 10px;
-    background: #f4f4f4;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: none;
-  }
-  pre {
-    padding: 15px;
-    border-radius: 8px;
-    overflow-x: auto;
-  }
-  
-  .status.working {
+  font-family: "Arial", sans-serif;
+  margin: 20px;
+  background-color: #f9f9f9;
+  color: #333;
+}
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+header h1 {
+  font-size: 2.5em;
+  color: #007acc;
+}
+header p {
+  font-size: 1.2em;
+  color: #666;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.api-section {
+  margin-bottom: 30px;
+}
+.api-section h2 {
+  font-size: 1.8em;
+  color: #444;
+  margin-bottom: 10px;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+li code {
+  background: #eef6ff;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: #007acc;
+}
+button {
+  /* background: #007acc; */
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: gray;
+  color:white,
+}
+
+button i {
+  pointer-events: none;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9em;
+  color: #777;
+}
+.disclaimer-section {
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 0.85em;
+  line-height: 1.5;
+}
+
+.disclaimer-section h4 {
+  color: #007acc;
+  font-size: large;
+  margin-bottom: 10px;
+}
+.test-form {
+  display: none;
+  margin-top: 10px;
+}
+.test-form input,
+.test-form textarea,
+.test-form select {
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: calc(100% - 12px);
+}
+.test-form button {
+  background: #007acc;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.result {
+  margin-top: 20px;
+  padding: 10px;
+  background: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: none;
+}
+pre {
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.status.working {
   color: green;
   font-weight: bold;
 }
@@ -109,4 +132,144 @@ body {
 .status.not-working {
   color: red;
   font-weight: bold;
+}
+
+
+.test-form {
+  margin-top: 20px;
+}
+
+.test-form h3 {
+  font-size: 1.8em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2d3748;
+}
+
+.form-group {
+  margin-bottom: 20px;
+
+}
+
+
+#url {
+  width: 98%; /* Adjust this value to make it smaller (e.g., 60%, 70%) */
+  
+}
+
+.form-group label {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #4a5568;
+  margin-bottom: 5px;
+}
+
+.test-form input,
+.test-form textarea,
+.test-form select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.test-form input:focus,
+.test-form textarea:focus,
+.test-form select:focus {
+  border-color: #3182ce;
+  outline: none;
+  box-shadow: 0 0 5px rgba(49, 130, 206, 0.5);
+}
+
+.test-form textarea {
+  height: 120px;
+  resize: none;
+}
+
+.test-form button.send-button {
+  background: #3182ce;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+
+.test-form button.send-button:hover {
+  background: #2b6cb0;
+}
+
+.result {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result h3 {
+  font-size: 1.5em;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+pre {
+  background: #2d3748;
+  color: #e2e8f0;
+  padding: 15px;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 0.95em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+    padding: 0;
+  }
+
+  .test-form button.send-button {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
+  #url {
+    width: 94%; /* Adjust this value to make it smaller (e.g., 60%, 70%) */
+    
+  }
+
+  pre {
+    font-size: 0.85em;
+    /* border: none;   */
+    padding: 5; 
+    /* border-width: 0; */
+  }
+  .result{
+    border: none;
+    padding: 0;
+    background: #f7fafc;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+  header p {
+    font-size: 1em;
+    
+  }
+  .api-section h2 {
+    font-size: 1.5em;
+ 
+  }
 }
