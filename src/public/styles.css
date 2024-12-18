@@ -1,0 +1,112 @@
+body {
+    font-family: "Arial", sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  header h1 {
+    font-size: 2.5em;
+    color: #007acc;
+  }
+  header p {
+    font-size: 1.2em;
+    color: #666;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .api-section {
+    margin-bottom: 30px;
+  }
+  .api-section h2 {
+    font-size: 1.8em;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  li code {
+    background: #eef6ff;
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: #007acc;
+  }
+  li button {
+    background: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  li button:hover {
+    background: #005fa3;
+  }
+  footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.9em;
+    color: #777;
+  }
+  .test-form {
+    display: none;
+    margin-top: 10px;
+  }
+  .test-form input,
+  .test-form textarea,
+  .test-form select {
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: calc(100% - 12px);
+  }
+  .test-form button {
+    background: #007acc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  .result {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: none;
+  }
+  pre {
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+  }
+  
+  .status.working {
+  color: green;
+  font-weight: bold;
+}
+
+.status.not-working {
+  color: red;
+  font-weight: bold;
+}

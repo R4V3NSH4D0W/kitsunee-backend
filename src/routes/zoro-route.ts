@@ -3,8 +3,28 @@ import { checkZoroWorking, MappedAnimeDetails, ZoroAnimeInfo, ZoroEpisodeSource,
 
 const router=express.Router();
 
+/**
+ * @swagger
+ * /api/zoroanime/search:
+ *   get:
+ *     summary: Search for anime
+ *     description: Search for anime using keyword
+ *     responses:
+ *       200:
+ *         description: Successfully fetched search results
+ */
 router.get("/search",ZoroSearchAnime);
 router.get('/popularanime',ZoroPopularAnime);
+/**
+ * @swagger
+ * /api/zoroanime/topairing:
+ *   get:
+ *     summary: Fetch the top airing anime from ZoroAnime
+ *     description: List anime currently being aired
+ *     responses:
+ *       200:
+ *         description: Successful response
+ */
 router.get('/topairing',ZoroTopAiring);
 router.get('/spotlight',ZoroSpotLight);
 router.get('/mostfavorite',ZoroMostFavorite);

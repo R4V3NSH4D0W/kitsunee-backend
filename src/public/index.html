@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reusable API Documentation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>API Documentation</h1>
+      <p>
+        Explore and test the available APIs for GogoAnime and ZoroAnime
+        services.
+      </p>
+    </header>
+    <div class="container">
+      <!-- GogoAnime Section -->
+
+      <!-- <div
+        class="api-section"
+        data-title="ZoroAnime Status"
+        id="zoroanime-status"
+      >
+        <div id="zoro-status">Checking...</div>
+      </div>
+
+      <div
+        class="api-section"
+        data-title="GogoAnime Status"
+        id="gogoanime-status"
+      >
+        <div id="gogo-status">Checking...</div>
+      </div> -->
+
+      <div
+        class="api-section"
+        data-title="GogoAnime Routes"
+        id="gogoanime-routes"
+      ></div>
+
+      <!-- ZoroAnime Section -->
+      <div
+        class="api-section"
+        data-title="ZoroAnime Routes"
+        id="zoroanime-routes"
+      ></div>
+    </div>
+    <footer>
+      <p>© 2024 Kitsunee Anime API Service</p>
+    </footer>
+
+    <div class="test-form" id="testForm">
+      <h3>Test API</h3>
+      <label for="method">Method:</label>
+      <select id="method">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+      </select>
+      <label for="url">URL:</label>
+      <input type="text" id="url" placeholder="Enter API URL" />
+      <label for="body">Request Body (JSON):</label>
+      <textarea
+        id="body"
+        placeholder="Enter JSON body for POST requests"
+      ></textarea>
+      <button onclick="sendRequest()">Send</button>
+    </div>
+
+    <div class="result" id="result">
+      <h3>Response</h3>
+      <pre id="response" class="language-json"></pre>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
