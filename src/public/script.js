@@ -15,7 +15,43 @@ const routes = {
       url: "/api/gogoanime/details?id=anime-id",
       description: "Fetch details of a specific anime.",
     },
+    {
+      method: "GET",
+      url: "/api/gogoanime/episodes?id=anime-id",
+      description: "Fetch episodes of a specific anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/episode?id=episode-id",
+      description: "Fetch a specific episode.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/recentlyadded",
+      description: "Fetch recently added anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/popular",
+      description: "Fetch popular anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/genrelist",
+      description: "Fetch list of genres.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/searchbygenre?genre=genre-name",
+      description: "Search anime by genre.",
+    },
+    {
+      method: "GET",
+      url: "/api/gogoanime/isworking",
+      description: "Check if GogoAnime is working.",
+    },
   ],
+
   zoroanime: [
     {
       method: "GET",
@@ -41,6 +77,62 @@ const routes = {
       method: "GET",
       url: "/api/zoroanime/spotlight",
       description: "Get Anime SpotLight.",
+    },
+    ,
+    {
+      method: "GET",
+      url: "/api/zoroanime/spotlight",
+      description: "Get Anime SpotLight.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/mostfavorite",
+      description: "Get Most Favorite Anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/recentlyupdated",
+      description: "Get Recently Updated Anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/episodesource?episode=episode_url",
+      description: "Get Episode Source.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/recentlyadded",
+      description: "Get Recently Added Anime.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/animeinfo?anime=anime_url",
+      description: "Get Anime Info.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/genres",
+      description: "Get Anime Genres.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/searchbygenre?genre=genre_name",
+      description: "Search Anime By Genre.",
+    },
+    {
+      method: "POST",
+      url: "/api/zoroanime/filtersearch",
+      description: "Filter Search.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/iszoroworking",
+      description: "Check if ZoroAnime is working.",
+    },
+    {
+      method: "GET",
+      url: "/api/zoroanime/movie",
+      description: "Get Movie.",
     },
   ],
 };
