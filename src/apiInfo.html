@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Documentation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      header h1 {
+        font-size: 2.5em;
+        color: #007acc;
+      }
+      header p {
+        font-size: 1.2em;
+        color: #666;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .api-section {
+        margin-bottom: 30px;
+      }
+      .api-section h2 {
+        font-size: 1.8em;
+        color: #444;
+        margin-bottom: 10px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background: #fff;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      li code {
+        background: #eef6ff;
+        padding: 2px 5px;
+        border-radius: 5px;
+        color: #007acc;
+      }
+      li button {
+        background: #007acc;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 0.9em;
+      }
+      li button:hover {
+        background: #005fa3;
+      }
+      footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: #777;
+      }
+      .test-form {
+        display: none;
+        margin-top: 10px;
+      }
+      .test-form input,
+      .test-form textarea,
+      .test-form select {
+        padding: 5px;
+        margin: 5px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: calc(100% - 12px);
+      }
+      .test-form button {
+        background: #007acc;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+      .result {
+        margin-top: 20px;
+        padding: 10px;
+        background: #f4f4f4;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        display: none;
+      }
+      pre {
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>API Documentation</h1>
+      <p>
+        Explore and test the available APIs for GogoAnime and ZoroAnime
+        services.
+      </p>
+    </header>
+    <div class="container">
+      <div class="api-section">
+        <h2>GogoAnime Routes</h2>
+        <ul>
+          <li>
+            <div>
+              <code>GET /api/gogoanime/search?q=query</code>
+              <p>Search anime with a query string.</p>
+            </div>
+            <button onclick="testApi('GET', '/api/gogoanime/search?q=query')">
+              Test
+            </button>
+          </li>
+          <li>
+            <div>
+              <code>GET /api/gogoanime/topairing?page=1</code>
+              <p>Fetch top airing anime by page.</p>
+            </div>
+            <button onclick="testApi('GET', '/api/gogoanime/topairing?page=1')">
+              Test
+            </button>
+          </li>
+          <li>
+            <div>
+              <code>GET /api/gogoanime/details?id=anime-id</code>
+              <p>Fetch details of a specific anime.</p>
+            </div>
+            <button
+              onclick="testApi('GET', '/api/gogoanime/details?id=anime-id')"
+            >
+              Test
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="api-section">
+        <h2>ZoroAnime Routes</h2>
+        <ul>
+          <li>
+            <div>
+              <code>GET /api/zoroanime/search?q=query</code>
+              <p>Search anime with a query string.</p>
+            </div>
+            <button onclick="testApi('GET', '/api/zoroanime/search?q=query')">
+              Test
+            </button>
+          </li>
+          <li>
+            <div>
+              <code>GET /api/zoroanime/popularanime</code>
+              <p>Fetch popular anime.</p>
+            </div>
+            <button onclick="testApi('GET', '/api/zoroanime/popularanime')">
+              Test
+            </button>
+          </li>
+          <li>
+            <div>
+              <code>GET /api/zoroanime/recentepisodes</code>
+              <p>Fetch recently uploaded episodes.</p>
+            </div>
+            <button onclick="testApi('GET', '/api/zoroanime/recentepisodes')">
+              Test
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer>
+      <p>© 2024 Anime API Service</p>
+    </footer>
+
+    <div class="test-form" id="testForm">
+      <h3>Test API</h3>
+      <label for="method">Method:</label>
+      <select id="method">
+        <option value="GET">GET</option>
+        <option value="POST">POST</option>
+      </select>
+      <label for="url">URL:</label>
+      <input type="text" id="url" placeholder="Enter API URL" />
+      <label for="body">Request Body (JSON):</label>
+      <textarea
+        id="body"
+        placeholder="Enter JSON body for POST requests"
+      ></textarea>
+      <button onclick="sendRequest()">Send</button>
+    </div>
+
+    <div class="result" id="result">
+      <h3>Response</h3>
+      <pre id="response" class="language-json"></pre>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script>
+      function testApi(method, url) {
+        document.getElementById("testForm").style.display = "block";
+        document.getElementById("method").value = method;
+        document.getElementById("url").value = url;
+        document.getElementById("body").style.display =
+          method === "POST" ? "block" : "none";
+      }
+
+      async function sendRequest() {
+        const method = document.getElementById("method").value;
+        const url = document.getElementById("url").value;
+        const body = document.getElementById("body").value;
+
+        try {
+          const options = { method };
+          if (method === "POST" && body.trim() !== "") {
+            options.headers = { "Content-Type": "application/json" };
+            options.body = body;
+          }
+          const response = await fetch(url, options);
+          const result = await response.json();
+
+          document.getElementById("result").style.display = "block";
+          document.getElementById("response").textContent = JSON.stringify(
+            result,
+            null,
+            2
+          );
+          Prism.highlightAll();
+        } catch (error) {
+          document.getElementById("result").style.display = "block";
+          document.getElementById(
+            "response"
+          ).textContent = `Error: ${error.message}`;
+        }
+      }
+    </script>
+  </body>
+</html>
