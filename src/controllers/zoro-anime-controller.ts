@@ -14,6 +14,10 @@ export const ZoroSearchAnime = async (req: Request, res: Response): Promise<void
   
     try {
       const searchResult = await getZoroSearch(query);
+      if (!searchResult) {
+        res.status(404).json({ error: "No Anime Found" });
+        return;
+    }
       res.status(200).json(searchResult);
     } catch (error) {
       console.error("Error in ZoroSearchAnime:", error);
@@ -68,18 +72,40 @@ export const ZoroSpotLight = async(_req:Request, res:Response)=>{
     }
 }
 
-export const ZoroEpisodeSource =async(req:Request, res:Response)=>{
-    const episodeId= req.query.id as string;
-    if(!episodeId){
-         res.status(400).json({error:"Please provide episode id"});
+export const ZoroEpisodeSource = async (req: Request, res: Response): Promise<void> => {
+    const episodeId = req.query.id as string;
+
+    if (!episodeId) {
+        res.status(400).json({ error: "Please provide a valid episode id" });
+        return; 
     }
-    try{
+
+    try {
+
         const episodeSource = await getZoroEpisodeSource(episodeId);
-         res.status(200).json(episodeSource);
-    }catch(error){
-         res.status(500).json({error:"Internal Server Error"});
+        
+    
+        if (!episodeSource) {
+            res.status(404).json({ error: "Episode source not found" });
+            return;
+        }
+        res.status(200).json(episodeSource);
+
+    } catch (error) {
+        console.error("Error fetching episode source:", error);
+
+        if (error instanceof TypeError && error.message.includes("startsWith")) {
+            res.status(500).json({ error: "Invalid data received from the source" });
+            return; 
+        }
+        if (!res.headersSent) {
+            res.status(500).json({ error: "Internal Server Error" });
+        }
     }
-}
+};
+
+
+
 
 export const ZoroAnimeInfo = async(req:Request, res:Response)=>{
     const id = req.query.id as string;

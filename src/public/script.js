@@ -17,7 +17,7 @@ const routes = {
     },
     {
       method: "GET",
-      url: "/api/gogoanime/episodesource?id=episode-id",
+      url: "/api/zoroanime/episodesource?id=episode-id",
       description: "Fetch episode source.",
     },
     {
@@ -85,7 +85,7 @@ const routes = {
     },
     {
       method: "GET",
-      url: "/api/zoroanime/episodesource?episode=episode_id",
+      url: "/api/zoroanime/episodesource?id=episode_id",
       description: "Get Episode Source.",
     },
     {
