@@ -2,6 +2,7 @@ import express from "express";
 import gogoRoute from './routes/gogo-route';
 import zoroRoute from './routes/zoro-route';
 import _9animeRoute from './routes/9anime-route';
+import news from './routes/news-route';
 import path from 'path';
 import logger from "./utils/logging";
 const app = express();
@@ -24,7 +25,8 @@ app.get('/', (req, res) => {
 
 app.use('/api/gogoanime', gogoRoute);
 app.use('/api/zoroanime', zoroRoute);
-app.use('/api/9anime', _9animeRoute);
+app.use('/api/9anime', _9animeRoute); 
+app.use('/api/news',news);
 
 app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
   logger.error(`Error: ${err.message} | URL: ${req.method} ${req.url}`);
