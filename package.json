@@ -25,7 +25,8 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
-    "@consumet/extensions": "^1.8.1",
+    "@consumet/extensions": "github:shimizudev/consumet.ts#master",
+    "@types/express": "^5.0.0",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "http-proxy-middleware": "^3.0.3",
