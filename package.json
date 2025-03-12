@@ -25,9 +25,11 @@
   "dependencies": {
     "@consumet/extensions": "github:shimizudev/consumet.ts#master",
     "@types/express": "^5.0.0",
+    "@types/node-fetch": "^2.6.12",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "http-proxy-middleware": "^3.0.3",
+    "node-fetch": "^3.3.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "winston": "^3.17.0",
