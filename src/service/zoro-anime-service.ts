@@ -32,8 +32,8 @@ export const getZoroRecentlyUpdated = async (page?:number) => {
 }
 
 //http://localhost:3000/api/zoroanime/search?q=sword
-export const getZoroSearch = async (query:string) => {
-    return await zoroanime.search(query)
+export const getZoroSearch = async (query:string,page:number) => {
+    return await zoroanime.search(query,page);
 }
 
 //http://localhost:3000/api/zoroanime/schedule?date=2023-12-09

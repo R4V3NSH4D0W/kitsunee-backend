@@ -6,18 +6,19 @@ import { mapAnimeDetail } from "../service/anime-info-mapper";
 
 export const ZoroSearchAnime = async (req: Request, res: Response): Promise<void> => {
     const query = req.query.q as string;
-  
+    const page = parseInt(req.query.page as string, 10) || 1;
+    
     if (!query) {
       res.status(400).json({ error: "Please provide a search query" });
-      return; 
+      return;
     }
   
     try {
-      const searchResult = await getZoroSearch(query);
-      if (!searchResult) {
+      const searchResult = await getZoroSearch(query, page);
+      if (!searchResult || searchResult.results.length === 0) {
         res.status(404).json({ error: "No Anime Found" });
         return;
-    }
+      }
       res.status(200).json(searchResult);
     } catch (error) {
       console.error("Error in ZoroSearchAnime:", error);
@@ -110,7 +111,7 @@ export const ZoroEpisodeSource = async (req: Request, res: Response): Promise<vo
 export const ZoroAnimeInfo = async(req:Request, res:Response)=>{
     const id = req.query.id as string;
     if(!id){
-     res.status(400).json({error:"Please provide search query"})
+     res.status(400).json({error:"Please provide ID"})
     }
     try{
         const animeInfo= await getZoroAnimeInfo(id);
